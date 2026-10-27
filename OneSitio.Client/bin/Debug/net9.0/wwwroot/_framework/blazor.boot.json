@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "OneSitio.Client",
   "resources": {
-    "hash": "sha256-TU/uXqS9PYSS/h54iMuoTdKsazY6gplyGwDRJXYK8Mg=",
+    "hash": "sha256-TQz7iUELRcIFt/dF8ys4KvnHdpzBrJdmLoX+IDjhUwQ=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.hvv0laqjie.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.f6608lwfbc.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -201,8 +201,8 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "OneSitio.Client.wgvgpppfsv.wasm": "OneSitio.Client.wasm",
-      "OneSitio.Client.z09758s58t.pdb": "OneSitio.Client.pdb"
+      "OneSitio.Client.sfakaabhnt.wasm": "OneSitio.Client.wasm",
+      "OneSitio.Client.ve8p408gmf.pdb": "OneSitio.Client.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.fd55pqaqpk.js": "sha256-cyurmk3Ak+seyp/QVHpPtXEhK3hn1GmYBbg7VYc4tWk="
@@ -412,10 +412,10 @@
       "WindowsBase.ll5jdkzi4l.wasm": "sha256-568Y3yUiAkmTiVnZz2LPdlSOGDGMoH3CbBN4t61f1jg=",
       "mscorlib.6ezbo6ix47.wasm": "sha256-EihbmmHyEvHbCXZ4SOBvS3p/Xoj6k56xHlC7wbC3ank=",
       "netstandard.6wxbr1mb3t.wasm": "sha256-qsCpIsv1PQuJuKL7N9mLyODsTES4nqW/9NuGQ3FtWN8=",
-      "OneSitio.Client.wgvgpppfsv.wasm": "sha256-UBBNWmauzb0aezEp/gVYfAiu7PYBVJ+PxRBWxxVnUm4="
+      "OneSitio.Client.sfakaabhnt.wasm": "sha256-2BPsRmioWWQN8APKF9TYb8VUX35y9mK/sTq36nzyGII="
     },
     "pdb": {
-      "OneSitio.Client.z09758s58t.pdb": "sha256-c24TgL/Zb0MHvYhQ/36ishMZ9mZ+4hTXoEJlAdbjCkM="
+      "OneSitio.Client.ve8p408gmf.pdb": "sha256-KQU5JTkDvciVtdFHeQyrOaHWLGJbc8vcFJIy8pIDd2U="
     }
   },
   "cacheBootResources": true,

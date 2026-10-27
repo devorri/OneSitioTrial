@@ -3,14 +3,14 @@
 @rendermode InteractiveServer
 @inject NavigationManager Navigation
 
-<PageTitle>Login &bull; OneSitio e-Barangay Portal</PageTitle>
+<PageTitle>Login &bull; Sangguniang Barangay ng Talampas, Bustos, Bulacan</PageTitle>
 
 <div class="auth-page-wrapper">
     <div class="auth-card">
         <div class="auth-header">
-            <img src="images/barangay_maligaya_seal.jpg" alt="Barangay Maligaya Crest" class="auth-header-seal" />
+            <img src="images/talampas-logo.png" alt="Barangay Talampas Logo" class="auth-header-seal" />
             <h3 class="fw-bold text-dark mb-1">Welcome to OneSitio</h3>
-            <p class="text-muted small mb-0">Barangay Maligaya Civic Services & Transparency Portal</p>
+            <p class="text-muted small mb-0">Sangguniang Barangay ng Talampas &bull; Bustos, Bulacan</p>
         </div>
 
         <!-- Role Switcher Tabs -->
@@ -19,7 +19,7 @@
                 <i class="bi bi-person-fill me-1"></i> Resident Portal
             </button>
             <button type="button" class="auth-tab-btn @(isStaffMode ? "active" : "")" @onclick="() => SwitchRole(true)">
-                <i class="bi bi-shield-lock-fill me-1"></i> Barangay Staff
+                <i class="bi bi-shield-lock-fill me-1"></i> Barangay Staff / Opisyal
             </button>
         </div>
 
@@ -42,13 +42,13 @@
         <form @onsubmit="HandleLogin">
             <div class="mb-3">
                 <label class="form-label">
-                    @(isStaffMode ? "Official Staff Email / ID" : "Resident ID, Email, or Mobile No.")
+                    @(isStaffMode ? "Official Staff Email / ID" : "Resident ID, Email, o Mobile No.")
                 </label>
                 <div class="input-group">
                     <span class="input-group-text bg-light text-muted border-end-0">
                         <i class="bi @(isStaffMode ? "bi-building-fill-lock" : "bi-person-badge")"></i>
                     </span>
-                    <input type="text" class="form-control border-start-0" placeholder="@(isStaffMode ? "secretary@maligaya.gov.ph" : "maria.santos@onesitio.ph or RES-2026-018")" @bind="username" required />
+                    <input type="text" class="form-control border-start-0" placeholder="@(isStaffMode ? "Halimbawa: secretary@talampas.gov.ph" : "Halimbawa: resident@email.com o RES-TAL-2026-001")" @bind="username" required />
                 </div>
             </div>
 
@@ -56,14 +56,14 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <label class="form-label mb-0">Password</label>
                     <a href="javascript:void(0)" class="text-secondary small" @onclick="() => showForgotHelper = !showForgotHelper">
-                        Forgot Password?
+                        Nakalimutan ang Password?
                     </a>
                 </div>
                 <div class="input-group mt-1">
                     <span class="input-group-text bg-light text-muted border-end-0">
                         <i class="bi bi-lock-fill"></i>
                     </span>
-                    <input type="@(showPassword ? "text" : "password")" class="form-control border-start-0 border-end-0" placeholder="••••••••••••" @bind="password" required />
+                    <input type="@(showPassword ? "text" : "password")" class="form-control border-start-0 border-end-0" placeholder="Ipasok ang inyong password" @bind="password" required />
                     <button type="button" class="input-group-text bg-light text-muted border-start-0" @onclick="() => showPassword = !showPassword">
                         <i class="bi @(showPassword ? "bi-eye-slash" : "bi-eye")"></i>
                     </button>
@@ -74,7 +74,7 @@
             {
                 <div class="alert alert-info py-2 px-3 small mb-3">
                     <i class="bi bi-info-circle me-1"></i>
-                    For security, password resets require OTP verification sent to your registered mobile number (+63 9XX) or assistance at the Barangay Secretary window.
+                    Para sa seguridad, ang password reset ay nangangailangan ng OTP na ipapadala sa inyong rehistradong mobile number o pagtungo sa tanggapan ng Kalihim sa Barangay Hall ng Talampas.
                 </div>
             }
 
@@ -82,7 +82,7 @@
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="rememberMe" @bind="rememberMe" />
                     <label class="form-check-label text-muted small" for="rememberMe">
-                        Remember this workstation
+                        Tandaan ang device na ito
                     </label>
                 </div>
                 <span class="badge bg-light text-muted border small">SSL Encrypted</span>
@@ -92,37 +92,19 @@
                 @if (isSubmitting)
                 {
                     <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                    <span>Verifying Credentials...</span>
+                    <span>Sinusuri ang Credentials...</span>
                 }
                 else
                 {
-                    <span>Log In to @(isStaffMode ? "Staff Portal" : "Resident Workspace") <i class="bi bi-arrow-right ms-1"></i></span>
+                    <span>Mag-login sa @(isStaffMode ? "Staff Portal" : "Resident Workspace") <i class="bi bi-arrow-right ms-1"></i></span>
                 }
             </button>
         </form>
 
-        <!-- Quick Demo Credentials Box -->
-        <div class="demo-credentials-box">
-            <div class="d-flex align-items-center justify-content-between">
-                <span class="text-muted fw-semibold" style="font-size: 0.775rem;">
-                    <i class="bi bi-lightning-charge-fill text-warning me-1"></i> QUICK DEMO LOGIN (ONE CLICK):
-                </span>
-                <span class="badge bg-secondary-subtle text-secondary" style="font-size: 0.7rem;">Evaluation Mode</span>
-            </div>
-            <div class="d-flex flex-wrap gap-2 mt-2">
-                <button type="button" class="demo-chip-btn" @onclick="AutofillResident">
-                    <i class="bi bi-person-check text-success"></i> Resident: Maria L. Santos
-                </button>
-                <button type="button" class="demo-chip-btn" @onclick="AutofillStaff">
-                    <i class="bi bi-shield-check text-primary"></i> Staff: Sec. Elena Bautista
-                </button>
-            </div>
-        </div>
-
         <div class="text-center mt-4 pt-3 border-top">
-            <span class="text-muted small">New resident in Barangay Maligaya?</span>
+            <span class="text-muted small">Bagong residente sa Barangay Talampas?</span>
             <a href="/register" class="fw-bold text-success ms-1 small">
-                Register a new resident account &rarr;
+                Magrehistro ng bagong resident account &rarr;
             </a>
         </div>
     </div>
@@ -130,10 +112,10 @@
 
 @code {
     private bool isStaffMode = false;
-    private string username = "maria.santos@onesitio.ph";
-    private string password = "Password123!";
+    private string username = "";
+    private string password = "";
     private bool showPassword = false;
-    private bool rememberMe = true;
+    private bool rememberMe = false;
     private bool showForgotHelper = false;
     private bool isSubmitting = false;
     private bool loginSuccess = false;
@@ -143,50 +125,22 @@
     {
         isStaffMode = staff;
         errorMessage = "";
-        if (isStaffMode)
-        {
-            username = "secretary@maligaya.gov.ph";
-            password = "StaffPassword2026!";
-        }
-        else
-        {
-            username = "maria.santos@onesitio.ph";
-            password = "Password123!";
-        }
-    }
-
-    private void AutofillResident()
-    {
-        isStaffMode = false;
-        username = "maria.santos@onesitio.ph";
-        password = "Password123!";
-        errorMessage = "";
-    }
-
-    private void AutofillStaff()
-    {
-        isStaffMode = true;
-        username = "secretary@maligaya.gov.ph";
-        password = "StaffPassword2026!";
-        errorMessage = "";
     }
 
     private async Task HandleLogin()
     {
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+        {
+            errorMessage = "Mangyaring ilagay ang inyong email/ID at password.";
+            return;
+        }
+
         isSubmitting = true;
         errorMessage = "";
-        await Task.Delay(600); // realistic feedback
+        await Task.Delay(400);
         isSubmitting = false;
         loginSuccess = true;
-        await Task.Delay(400);
-
-        if (isStaffMode)
-        {
-            Navigation.NavigateTo("/resident?role=secretary");
-        }
-        else
-        {
-            Navigation.NavigateTo("/resident");
-        }
+        await Task.Delay(250);
+        Navigation.NavigateTo("/resident");
     }
 }

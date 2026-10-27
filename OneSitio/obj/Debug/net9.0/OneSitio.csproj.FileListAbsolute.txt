@@ -59,7 +59,6 @@ C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\scoped
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\scopedcss\bundle\OneSitio.styles.css
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\scopedcss\projectbundle\OneSitio.bundle.scp.css
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\compressed\mtrbud45s9-khy4lop6wu.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\compressed\gswzlgykc4-bqjiyaj88i.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\compressed\g8yte3nimz-c2jlpeoesf.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\compressed\6dnzgm6pqu-erw9l3u2r3.gz
@@ -117,4 +116,4 @@ C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\OneSit
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\OneSitio.genruntimeconfig.cache
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\ref\OneSitio.dll
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\OneSitio.sourcelink.json
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\compressed\mtrbud45s9-pixscw33vn.gz
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio\obj\Debug\net9.0\compressed\mtrbud45s9-rugmsbhmal.gz
