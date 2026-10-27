@@ -1,0 +1,274 @@
+@page "/resident"
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+
+<PageTitle>Resident Workspace &bull; OneSitio Barangay Maligaya</PageTitle>
+
+<div class="d-flex min-vh-100" style="background-color: #f6f8f6;">
+    <!-- Figma Prototype Matching Left Sidebar -->
+    <aside class="d-none d-md-flex flex-column justify-content-between p-3 border-end bg-white" style="width: 250px; min-width: 250px;">
+        <div>
+            <!-- Brand -->
+            <a href="/" class="d-flex align-items-center gap-2 text-decoration-none mb-4">
+                <img src="images/barangay_maligaya_seal.jpg" alt="Barangay Seal" style="width: 36px; height: 36px; border-radius: 50%;" />
+                <div>
+                    <div class="fw-bold fs-5 text-dark" style="color: #174836 !important; line-height: 1.1;">OneSitio</div>
+                    <div class="text-muted" style="font-size: 0.7rem;">e-Barangay services</div>
+                </div>
+            </a>
+
+            <div class="text-uppercase text-muted fw-bold mb-2" style="font-size: 0.68rem; letter-spacing: 0.08em;">
+                Resident Workspace
+            </div>
+
+            <!-- Nav Links -->
+            <ul class="nav nav-pills flex-column gap-1">
+                <li class="nav-item">
+                    <a class="nav-link active d-flex align-items-center gap-2 fw-semibold" href="/resident" style="background-color: #eaf4ee; color: #174836; border-radius: 8px;">
+                        <i class="bi bi-grid-fill"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary d-flex align-items-center gap-2 fw-semibold" href="/#services">
+                        <i class="bi bi-file-earmark-plus"></i> Request a Document
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary d-flex align-items-center gap-2 fw-semibold" href="/#tracker">
+                        <i class="bi bi-card-checklist"></i> My Requests
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary d-flex align-items-center gap-2 fw-semibold" href="/#services">
+                        <i class="bi bi-wallet2"></i> Payments
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary d-flex align-items-center gap-2 fw-semibold" href="/#transparency">
+                        <i class="bi bi-graph-up"></i> Transparency Portal
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Sidebar Bottom Notice -->
+        <div class="mt-4 pt-3 border-top">
+            <div class="p-3 rounded-3" style="background-color: #f8fafc; border: 1px solid #e2e8f0; font-size: 0.75rem;">
+                <div class="fw-bold text-dark mb-1">A student-built prototype</div>
+                <div class="text-muted">BSIT semi-capstone &bull; Sample community and records.</div>
+                <div class="text-muted mt-2 pt-2 border-top" style="font-size: 0.7rem;">
+                    Sample resident view &bull; No real authentication
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <a href="/" class="btn btn-sm btn-outline-secondary w-100 fw-semibold">
+                    <i class="bi bi-box-arrow-left me-1"></i> Exit to Public Portal
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace Content -->
+    <main class="flex-grow-1 d-flex flex-column">
+        <!-- Top Navbar in Workspace -->
+        <header class="d-flex align-items-center justify-content-between px-4 py-3 bg-white border-bottom">
+            <div class="d-flex align-items-center gap-2">
+                <a href="/" class="d-md-none text-decoration-none me-2">
+                    <img src="images/barangay_maligaya_seal.jpg" alt="Logo" style="width: 32px; height: 32px; border-radius: 50%;" />
+                </a>
+                <span class="text-muted small fw-semibold text-uppercase" style="letter-spacing: 0.05em; font-size: 0.75rem;">
+                    Resident Workspace &bull; Barangay Maligaya
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                <span class="d-none d-sm-inline badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1 small">
+                    <i class="bi bi-shield-check me-1"></i> Verified Citizen
+                </span>
+                <div class="dropdown">
+                    <div class="d-flex align-items-center gap-2 p-1 rounded-pill border bg-light" style="cursor: pointer;">
+                        <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 32px; height: 32px; font-size: 0.8rem; background-color: #174836 !important;">
+                            MS
+                        </div>
+                        <span class="small fw-semibold text-dark pe-2 d-none d-md-inline">Maria L. Santos</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Area -->
+        <div class="container-fluid p-4" style="max-width: 1200px;">
+            <div class="mb-4">
+                <div class="text-muted small text-uppercase fw-semibold" style="letter-spacing: 0.05em; font-size: 0.725rem;">
+                    RESIDENT WORKSPACE / HOME
+                </div>
+                <h2 class="fw-bold text-dark mt-1 mb-1" style="font-size: 2rem;">Welcome back, Maria.</h2>
+                <p class="text-muted small">Manage your barangay requests in one place.</p>
+            </div>
+
+            <!-- Notice Banner (Matching Figma) -->
+            <div class="fictional-notice-banner">
+                <i class="bi bi-info-circle-fill"></i>
+                <div class="small">
+                    <strong>A student demo, not a government service</strong><br />
+                    All records are fictional. No official documents are issued and no actual payments are processed.
+                </div>
+            </div>
+
+            <!-- How can we help you today? Cards -->
+            <div class="mb-5">
+                <h5 class="fw-bold text-dark mb-3">How can we help you today?</h5>
+                <div class="row g-3">
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="/#services" class="proto-action-card proto-action-primary">
+                            <div>
+                                <div class="proto-card-top">
+                                    <i class="bi bi-file-earmark-plus proto-card-icon"></i>
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </div>
+                                <h6 class="fw-bold mb-1 text-white">Request a Document</h6>
+                            </div>
+                            <div class="text-white-50 small mt-3">Start a sample application</div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="/#tracker" class="proto-action-card">
+                            <div>
+                                <div class="proto-card-top text-dark">
+                                    <i class="bi bi-card-checklist proto-card-icon text-muted"></i>
+                                    <i class="bi bi-arrow-up-right text-muted"></i>
+                                </div>
+                                <h6 class="fw-bold mb-1 text-dark">My Requests</h6>
+                            </div>
+                            <div class="text-muted small mt-3">4 fictional requests</div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="/#services" class="proto-action-card">
+                            <div>
+                                <div class="proto-card-top text-dark">
+                                    <i class="bi bi-wallet2 proto-card-icon text-muted"></i>
+                                    <i class="bi bi-arrow-up-right text-muted"></i>
+                                </div>
+                                <h6 class="fw-bold mb-1 text-dark">Payments</h6>
+                            </div>
+                            <div class="text-muted small mt-3">View illustrative fees</div>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <a href="/#transparency" class="proto-action-card">
+                            <div>
+                                <div class="proto-card-top text-dark">
+                                    <i class="bi bi-graph-up proto-card-icon text-muted"></i>
+                                    <i class="bi bi-arrow-up-right text-muted"></i>
+                                </div>
+                                <h6 class="fw-bold mb-1 text-dark">Transparency Portal</h6>
+                            </div>
+                            <div class="text-muted small mt-3">Explore public demo finances</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two-Column Grid: Recent Requests & Resident Details -->
+            <div class="row g-4">
+                <!-- Left: Recent requests table -->
+                <div class="col-lg-8">
+                    <div class="bg-white rounded-3 border p-4 shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="fw-bold text-dark mb-0">Recent requests</h5>
+                            <a href="/#tracker" class="small text-success text-decoration-none fw-semibold">View all requests &rarr;</a>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0">
+                                <thead class="table-light text-muted" style="font-size: 0.75rem; letter-spacing: 0.05em;">
+                                    <tr>
+                                        <th scope="col" class="border-0">DOCUMENT / REQUEST ID</th>
+                                        <th scope="col" class="border-0">SUBMITTED</th>
+                                        <th scope="col" class="border-0 text-end">STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="py-3">
+                                            <div class="fw-bold text-dark">Barangay Clearance</div>
+                                            <div class="text-muted small">REQ-0264</div>
+                                        </td>
+                                        <td class="text-secondary small">Oct 22, 2026</td>
+                                        <td class="text-end">
+                                            <span class="badge badge-status badge-pending">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3">
+                                            <div class="fw-bold text-dark">Certificate of Indigency</div>
+                                            <div class="text-muted small">REQ-0261</div>
+                                        </td>
+                                        <td class="text-secondary small">Oct 21, 2026</td>
+                                        <td class="text-end">
+                                            <span class="badge badge-status badge-under-review">Under Review</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3">
+                                            <div class="fw-bold text-dark">Barangay Clearance</div>
+                                            <div class="text-muted small">REQ-0252</div>
+                                        </td>
+                                        <td class="text-secondary small">Oct 18, 2026</td>
+                                        <td class="text-end">
+                                            <span class="badge badge-status badge-approved">Approved</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3">
+                                            <div class="fw-bold text-dark">Barangay Clearance</div>
+                                            <div class="text-muted small">REQ-0247</div>
+                                        </td>
+                                        <td class="text-secondary small">Oct 15, 2026</td>
+                                        <td class="text-end">
+                                            <span class="badge badge-status badge-ready">Ready for Release</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Resident details & See bigger picture -->
+                <div class="col-lg-4">
+                    <div class="bg-white rounded-3 border p-4 shadow-sm mb-4">
+                        <h6 class="fw-bold text-dark mb-3">Your resident details</h6>
+                        <div class="fw-bold text-dark fs-5">Maria L. Santos</div>
+                        <p class="text-secondary small mt-1 mb-3">
+                            24 Sampaguita St., Purok 2<br />
+                            Barangay Maligaya
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center py-2 border-top border-bottom small">
+                            <span class="text-muted">Resident ID</span>
+                            <span class="fw-bold text-dark font-monospace">RES-2026-018</span>
+                        </div>
+                        <div class="text-muted small mt-2" style="font-size: 0.75rem;">
+                            Fictional profile for demonstration.
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-3 border shadow-sm" style="background-color: #eaf4ee; border-color: #cce5d6 !important;">
+                        <h6 class="fw-bold text-dark mb-2">See the bigger picture</h6>
+                        <p class="small text-secondary mb-3">
+                            Explore sample community budgets and projects. Public records never show resident requests or payments.
+                        </p>
+                        <a href="/#transparency" class="text-success fw-bold small text-decoration-none">
+                            Explore transparency portal &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
