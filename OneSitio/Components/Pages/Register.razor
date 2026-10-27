@@ -1,0 +1,522 @@
+@page "/register"
+@layout Layout.PublicLayout
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+
+<PageTitle>Resident Registration &bull; OneSitio e-Barangay</PageTitle>
+
+<div class="auth-page-wrapper">
+    <div class="auth-card auth-card-wide">
+        <!-- Header -->
+        <div class="auth-header">
+            <img src="images/barangay_maligaya_seal.jpg" alt="Barangay Maligaya Crest" class="auth-header-seal" />
+            <h3 class="fw-bold text-dark mb-1">Citizen Registration & Verification</h3>
+            <p class="text-muted small mb-0">Barangay Maligaya Resident Portal &bull; Ages 15 and up</p>
+        </div>
+
+        @if (currentStep <= 4)
+        {
+            <!-- Wizard Progress Indicator -->
+            <div class="wizard-progress">
+                <div class="wizard-step-node @(currentStep >= 1 ? (currentStep == 1 ? "active" : "completed") : "")" @onclick="() => GoToStep(1)">
+                    <div class="wizard-circle">
+                        @(currentStep > 1 ? "✓" : "1")
+                    </div>
+                    <div class="wizard-label d-none d-sm-block">Personal Details</div>
+                </div>
+                <div class="wizard-step-node @(currentStep >= 2 ? (currentStep == 2 ? "active" : "completed") : "")" @onclick="() => GoToStep(2)">
+                    <div class="wizard-circle">
+                        @(currentStep > 2 ? "✓" : "2")
+                    </div>
+                    <div class="wizard-label d-none d-sm-block">ID & OCR Pre-Check</div>
+                </div>
+                <div class="wizard-step-node @(currentStep >= 3 ? (currentStep == 3 ? "active" : "completed") : "")" @onclick="() => GoToStep(3)">
+                    <div class="wizard-circle">
+                        @(currentStep > 3 ? "✓" : "3")
+                    </div>
+                    <div class="wizard-label d-none d-sm-block">Live Photo</div>
+                </div>
+                <div class="wizard-step-node @(currentStep >= 4 ? (currentStep == 4 ? "active" : "completed") : "")" @onclick="() => GoToStep(4)">
+                    <div class="wizard-circle">
+                        4
+                    </div>
+                    <div class="wizard-label d-none d-sm-block">Household & Security</div>
+                </div>
+            </div>
+        }
+
+        <!-- STEP 1: Personal Details -->
+        @if (currentStep == 1)
+        {
+            <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-dark mb-0">Step 1: Resident Personal Details & Eligibility</h5>
+                    <button type="button" class="btn btn-sm btn-outline-success" @onclick="AutofillStep1">
+                        <i class="bi bi-magic me-1"></i> Quick Fill Maria Santos
+                    </button>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">First Name *</label>
+                        <input type="text" class="form-control" @bind="firstName" placeholder="e.g. Maria" required />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" @bind="middleName" placeholder="e.g. Ocampo" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Last Name *</label>
+                        <input type="text" class="form-control" @bind="lastName" placeholder="e.g. Santos" required />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Suffix</label>
+                        <input type="text" class="form-control" @bind="suffix" placeholder="Jr., III, etc." />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Date of Birth *</label>
+                        <input type="date" class="form-control" @bind="birthDate" @bind:after="CalculateAge" required />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Age & Eligibility</label>
+                        <div class="p-2 border rounded bg-light text-center">
+                            @if (calculatedAge >= 15)
+                            {
+                                <span class="text-success fw-bold small">
+                                    <i class="bi bi-check-circle-fill me-1"></i> Age @calculatedAge (Eligible)
+                                </span>
+                            }
+                            else if (calculatedAge > 0)
+                            {
+                                <span class="text-danger fw-bold small">
+                                    <i class="bi bi-exclamation-octagon-fill me-1"></i> Age @calculatedAge (Min. 15 yrs)
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="text-muted small">Select birth date above</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Civil Status *</label>
+                        <select class="form-select" @bind="civilStatus">
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Widowed">Widowed</option>
+                            <option value="Separated">Separated</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Mobile Contact No. (+63) *</label>
+                        <input type="tel" class="form-control" @bind="mobileNumber" placeholder="0917 123 4567" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-control" @bind="email" placeholder="maria.santos@onesitio.ph" required />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Barangay Purok / Sitio *</label>
+                        <select class="form-select" @bind="purok">
+                            <option value="Purok 1 Sampaguita">Purok 1 - Sampaguita</option>
+                            <option value="Purok 2 Maligaya Proper">Purok 2 - Maligaya Proper</option>
+                            <option value="Purok 3 Riverside">Purok 3 - Riverside</option>
+                            <option value="Purok 4 Ilaya">Purok 4 - Ilaya</option>
+                            <option value="Sitio Bagong Silang">Sitio Bagong Silang</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">House No. / Street Address *</label>
+                        <input type="text" class="form-control" @bind="streetAddress" placeholder="24 Sampaguita St." required />
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                    <a href="/login" class="text-muted small">
+                        <i class="bi bi-arrow-left me-1"></i> Already registered? Log in
+                    </a>
+                    <button type="button" class="btn btn-civic-primary px-4 fw-bold" @onclick="() => NextStep(2)">
+                        Next: ID & OCR Pre-Check <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                </div>
+            </div>
+        }
+
+        <!-- STEP 2: Government ID & OCR Pre-Checking Engine -->
+        @if (currentStep == 2)
+        {
+            <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h5 class="fw-bold text-dark mb-0">Step 2: Upload Valid ID & OCR Pre-Checking</h5>
+                        <p class="text-muted small mb-0">System automatically scans text data to minimize manual typos.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-success" @onclick="LoadSampleID">
+                        <i class="bi bi-card-image me-1"></i> Load Specimen UMID ID
+                    </button>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Government ID Type *</label>
+                        <select class="form-select" @bind="idType">
+                            <option value="Unified Multi-Purpose ID (UMID)">Unified Multi-Purpose ID (UMID)</option>
+                            <option value="Philippine National ID (PhilSys)">Philippine National ID (PhilSys)</option>
+                            <option value="COMELEC Voter's ID / Certificate">COMELEC Voter's ID / Certificate</option>
+                            <option value="Driver's License">Driver's License (LTO)</option>
+                            <option value="Postal ID">Postal ID</option>
+                            <option value="Student ID (Ages 15-17)">Student ID (Ages 15–17)</option>
+                            <option value="Senior Citizen ID">Senior Citizen ID</option>
+                            <option value="Philippine Passport">Philippine Passport</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">ID Serial Number (or auto-extracted)</label>
+                        <input type="text" class="form-control" @bind="idNumber" placeholder="e.g. 8942-5018-9120" />
+                    </div>
+                </div>
+
+                <!-- OCR Scanner Display -->
+                <div class="ocr-scanner-box mt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="small text-light fw-bold">
+                            <i class="bi bi-cpu text-info me-1"></i> ONESITIO OCR PRE-CHECK SCANNER
+                        </span>
+                        @if (ocrScanned)
+                        {
+                            <span class="badge bg-success">
+                                <i class="bi bi-patch-check-fill me-1"></i> OCR Extraction Complete (99.4% Match)
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">Ready to Scan</span>
+                        }
+                    </div>
+
+                    <div class="ocr-id-preview">
+                        <img src="images/sample_gov_id.jpg" alt="Uploaded Government ID Specimen" />
+                        @if (isScanningOcr)
+                        {
+                            <div class="ocr-laser-line"></div>
+                        }
+                        @if (ocrScanned)
+                        {
+                            <div class="ocr-target-box" style="top: 32%; left: 40%; width: 25%; height: 20%;"></div>
+                            <div class="ocr-target-box" style="top: 59%; left: 40%; width: 45%; height: 14%;"></div>
+                        }
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="button" class="btn btn-sm btn-success px-3 fw-bold" @onclick="TriggerOcrScan" disabled="@isScanningOcr">
+                            @if (isScanningOcr)
+                            {
+                                <span class="spinner-border spinner-border-sm me-1"></span>
+                                <span>Reading Text Data...</span>
+                            }
+                            else
+                            {
+                                <span><i class="bi bi-upc-scan me-1"></i> Run OCR Pre-Check Scan</span>
+                            }
+                        </button>
+                    </div>
+
+                    @if (ocrScanned)
+                    {
+                        <div class="row g-2 mt-3 pt-3 border-top border-secondary border-opacity-50">
+                            <div class="col-md-4">
+                                <div class="ocr-extracted-badge">
+                                    <div class="key">FULL NAME:</div>
+                                    <div class="val">MARIA O. SANTOS</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="ocr-extracted-badge">
+                                    <div class="key">BIRTH DATE:</div>
+                                    <div class="val">12 JAN 1990</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="ocr-extracted-badge">
+                                    <div class="key">ID SERIAL:</div>
+                                    <div class="val">8942-5018-9120</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-success mt-2 py-1 px-2 small mb-0 text-white bg-success bg-opacity-25 border-0 d-flex align-items-center gap-1">
+                            <i class="bi bi-shield-check text-success"></i>
+                            <span>OCR verification passed. Text automatically harmonized with Step 1 details.</span>
+                        </div>
+                    }
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                    <button type="button" class="btn btn-outline-secondary px-3" @onclick="() => GoToStep(1)">
+                        <i class="bi bi-arrow-left me-1"></i> Back
+                    </button>
+                    <button type="button" class="btn btn-civic-primary px-4 fw-bold" @onclick="() => NextStep(3)">
+                        Next: Live Selfie Verification <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                </div>
+            </div>
+        }
+
+        <!-- STEP 3: Live Selfie / Biometric Photo -->
+        @if (currentStep == 3)
+        {
+            <div>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h5 class="fw-bold text-dark mb-0">Step 3: Live Photo & Biometric Verification</h5>
+                        <p class="text-muted small mb-0">Ensure face is in full lighting and matches your government ID photo.</p>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-success" @onclick="LoadSampleSelfie">
+                        <i class="bi bi-camera me-1"></i> Load Specimen Selfie
+                    </button>
+                </div>
+
+                <div class="text-center py-2">
+                    <div class="selfie-guide-box">
+                        <img src="images/sample_resident_selfie.jpg" alt="Biometric Face Capture" />
+                    </div>
+
+                    <div class="d-inline-flex gap-2 mb-3">
+                        <button type="button" class="btn btn-sm btn-civic-outline" @onclick="LoadSampleSelfie">
+                            <i class="bi bi-camera-fill me-1"></i> Capture / Retake Photo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card bg-light border p-3 rounded-3">
+                    <h6 class="fw-bold text-dark mb-2 small"><i class="bi bi-shield-check text-success me-1"></i> Biometric Validation Criteria</h6>
+                    <div class="row g-2 small text-secondary">
+                        <div class="col-md-4">
+                            <i class="bi bi-check2-circle text-success me-1"></i> Neutral Face / Eyes Open
+                        </div>
+                        <div class="col-md-4">
+                            <i class="bi bi-check2-circle text-success me-1"></i> No Dark Sunglasses or Face Mask
+                        </div>
+                        <div class="col-md-4">
+                            <i class="bi bi-check2-circle text-success me-1"></i> 98.7% Facial Geometry Match with ID
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                    <button type="button" class="btn btn-outline-secondary px-3" @onclick="() => GoToStep(2)">
+                        <i class="bi bi-arrow-left me-1"></i> Back
+                    </button>
+                    <button type="button" class="btn btn-civic-primary px-4 fw-bold" @onclick="() => NextStep(4)">
+                        Next: Household & Account Security <i class="bi bi-arrow-right ms-1"></i>
+                    </button>
+                </div>
+            </div>
+        }
+
+        <!-- STEP 4: Household & Security Setup -->
+        @if (currentStep == 4)
+        {
+            <div>
+                <h5 class="fw-bold text-dark mb-3">Step 4: Household Profile & Account Security</h5>
+
+                <!-- Household Head Checkbox -->
+                <div class="p-3 bg-light rounded-3 border mb-4">
+                    <div class="form-check form-switch mb-2">
+                        <input class="form-check-input" type="checkbox" id="householdSwitch" @bind="isHouseholdHead" />
+                        <label class="form-check-label fw-bold text-dark" for="householdSwitch">
+                            Register as Household Head (Manage Family Profile)
+                        </label>
+                    </div>
+                    <p class="text-muted small mb-0">
+                        Enables adding family members to your portal. Allows parents/guardians to request barangay certificates on behalf of minors under 15 or elderly relatives who cannot navigate the platform independently.
+                    </p>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Create Password *</label>
+                        <input type="password" class="form-control" @bind="password" placeholder="At least 8 characters" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Confirm Password *</label>
+                        <input type="password" class="form-control" @bind="confirmPassword" placeholder="Confirm your password" required />
+                    </div>
+                </div>
+
+                <div class="form-check mt-4">
+                    <input class="form-check-input" type="checkbox" id="privacyConsent" @bind="consentPrivacy" required />
+                    <label class="form-check-label text-secondary small" for="privacyConsent">
+                        I hereby declare under penalty of law that the information provided is true and correct. I consent to the processing of my personal and biometric data by the Barangay Government of Maligaya in strict accordance with <strong>Republic Act No. 10173 (Data Privacy Act of 2012)</strong>.
+                    </label>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                    <button type="button" class="btn btn-outline-secondary px-3" @onclick="() => GoToStep(3)">
+                        <i class="bi bi-arrow-left me-1"></i> Back
+                    </button>
+                    <button type="button" class="btn btn-civic-primary px-4 py-2 fs-6 fw-bold" @onclick="SubmitRegistration" disabled="@(!consentPrivacy || isSubmitting)">
+                        @if (isSubmitting)
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                            <span>Encrypting & Submitting...</span>
+                        }
+                        else
+                        {
+                            <span>Complete Registration & Submit <i class="bi bi-check-lg ms-1"></i></span>
+                        }
+                    </button>
+                </div>
+            </div>
+        }
+
+        <!-- STEP 5: Success & Verification Preview -->
+        @if (currentStep == 5)
+        {
+            <div class="text-center py-3">
+                <div class="mb-3">
+                    <span class="badge bg-success p-3 rounded-circle fs-2 shadow-sm">
+                        <i class="bi bi-check-lg text-white"></i>
+                    </span>
+                </div>
+
+                <h3 class="fw-bold text-dark mb-1">Registration Successfully Submitted!</h3>
+                <p class="text-muted small mb-4">
+                    Provisional Resident Reference Code: <strong class="text-success fs-5">REG-2026-0842</strong>
+                </p>
+
+                <div class="card bg-light border p-4 text-start mx-auto mb-4" style="max-width: 600px;">
+                    <h6 class="fw-bold text-dark border-bottom pb-2 mb-3">Application Summary & Verification Status</h6>
+                    <div class="row g-2 small">
+                        <div class="col-sm-6 text-muted">Applicant:</div>
+                        <div class="col-sm-6 fw-bold text-dark">Maria Ocampo Santos</div>
+
+                        <div class="col-sm-6 text-muted">Date of Birth:</div>
+                        <div class="col-sm-6 fw-semibold">Jan 12, 1990 (Age 36)</div>
+
+                        <div class="col-sm-6 text-muted">Barangay Address:</div>
+                        <div class="col-sm-6 fw-semibold">24 Sampaguita St., Purok 2, Brgy. Maligaya</div>
+
+                        <div class="col-sm-6 text-muted">ID Verification:</div>
+                        <div class="col-sm-6 text-success fw-bold"><i class="bi bi-check-circle-fill me-1"></i> UMID OCR Pre-Checked (99.4%)</div>
+
+                        <div class="col-sm-6 text-muted">Household Role:</div>
+                        <div class="col-sm-6 fw-semibold">Household Head (Dependents enabled)</div>
+
+                        <div class="col-sm-6 text-muted">Secretary Review:</div>
+                        <div class="col-sm-6 text-primary fw-bold"><i class="bi bi-hourglass-split me-1"></i> Forwarded to Sec. Elena Bautista</div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a href="/login" class="btn btn-civic-primary px-4 py-2 fw-bold">
+                        Proceed to Resident Login <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                    <a href="/" class="btn btn-outline-secondary px-4 py-2">
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private int currentStep = 1;
+    private string firstName = "Maria";
+    private string middleName = "Ocampo";
+    private string lastName = "Santos";
+    private string suffix = "";
+    private DateTime birthDate = new DateTime(1990, 1, 12);
+    private int calculatedAge = 36;
+    private string civilStatus = "Married";
+    private string mobileNumber = "0917 888 2749";
+    private string email = "maria.santos@onesitio.ph";
+    private string purok = "Purok 2 Maligaya Proper";
+    private string streetAddress = "24 Sampaguita St.";
+
+    private string idType = "Unified Multi-Purpose ID (UMID)";
+    private string idNumber = "8942-5018-9120";
+    private bool isScanningOcr = false;
+    private bool ocrScanned = true;
+
+    private bool isHouseholdHead = true;
+    private string password = "Password123!";
+    private string confirmPassword = "Password123!";
+    private bool consentPrivacy = true;
+    private bool isSubmitting = false;
+
+    protected override void OnInitialized()
+    {
+        CalculateAge();
+    }
+
+    private void CalculateAge()
+    {
+        var today = DateTime.Today;
+        calculatedAge = today.Year - birthDate.Year;
+        if (birthDate.Date > today.AddYears(-calculatedAge)) calculatedAge--;
+    }
+
+    private void GoToStep(int step)
+    {
+        if (step <= currentStep || step <= 4)
+        {
+            currentStep = step;
+        }
+    }
+
+    private void NextStep(int target)
+    {
+        currentStep = target;
+    }
+
+    private void AutofillStep1()
+    {
+        firstName = "Maria";
+        middleName = "Ocampo";
+        lastName = "Santos";
+        suffix = "";
+        birthDate = new DateTime(1990, 1, 12);
+        CalculateAge();
+        civilStatus = "Married";
+        mobileNumber = "0917 888 2749";
+        email = "maria.santos@onesitio.ph";
+        purok = "Purok 2 Maligaya Proper";
+        streetAddress = "24 Sampaguita St.";
+    }
+
+    private void LoadSampleID()
+    {
+        idType = "Unified Multi-Purpose ID (UMID)";
+        idNumber = "8942-5018-9120";
+        TriggerOcrScan();
+    }
+
+    private async void TriggerOcrScan()
+    {
+        isScanningOcr = true;
+        ocrScanned = false;
+        StateHasChanged();
+        await Task.Delay(1000); // Simulate OCR scan
+        isScanningOcr = false;
+        ocrScanned = true;
+        idNumber = "8942-5018-9120";
+        StateHasChanged();
+    }
+
+    private void LoadSampleSelfie()
+    {
+        // Specimen loaded
+    }
+
+    private async Task SubmitRegistration()
+    {
+        isSubmitting = true;
+        await Task.Delay(800);
+        isSubmitting = false;
+        currentStep = 5;
+    }
+}

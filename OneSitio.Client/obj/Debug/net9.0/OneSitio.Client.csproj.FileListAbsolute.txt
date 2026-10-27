@@ -199,8 +199,6 @@ C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\icudt_CJK.tjcz0u77k5.dat
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\icudt_EFIGS.tptq2av103.dat
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\icudt_no_CJK.lfu7j35m59.dat
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\OneSitio.Client.cn3iua4hls.wasm
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\OneSitio.Client.ifxfs1upv5.pdb
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\blazor.boot.json
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\blazor.webassembly.js.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\Microsoft.AspNetCore.Authorization.hvv0laqjie.wasm.gz
@@ -403,8 +401,6 @@ C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\icudt_CJK.tjcz0u77k5.dat.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\icudt_EFIGS.tptq2av103.dat.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\icudt_no_CJK.lfu7j35m59.dat.gz
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\OneSitio.Client.cn3iua4hls.wasm.gz
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\OneSitio.Client.ifxfs1upv5.pdb.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\blazor.boot.json.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\OneSitio.Client.staticwebassets.runtime.json
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\OneSitio.Client.staticwebassets.endpoints.json
@@ -1018,9 +1014,6 @@ C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\pkd109ds6j-tjcz0u77k5.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\acuzw00kc8-tptq2av103.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\a71uw0w4oz-lfu7j35m59.gz
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\x6gqb1hje1-cn3iua4hls.gz
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\vbf1yk756h-ifxfs1upv5.gz
-C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\nwx8t9uryi-sq5919ovfk.gz
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\staticwebassets.development.json
@@ -1030,3 +1023,11 @@ C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\refint\OneSitio.Client.dll
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\OneSitio.Client.pdb
 C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\ref\OneSitio.Client.dll
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\OneSitio.Client.wgvgpppfsv.wasm
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\OneSitio.Client.z09758s58t.pdb
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\OneSitio.Client.wgvgpppfsv.wasm.gz
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\bin\Debug\net9.0\wwwroot\_framework\OneSitio.Client.z09758s58t.pdb.gz
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\OneSitio.Client.sourcelink.json
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\x6gqb1hje1-wgvgpppfsv.gz
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\vbf1yk756h-z09758s58t.gz
+C:\Users\Tom Pc\Desktop\DotNetProjects\OneSitio\OneSitio.Client\obj\Debug\net9.0\compressed\nwx8t9uryi-4kgyv63jy6.gz

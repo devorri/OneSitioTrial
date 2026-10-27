@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OneSitio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aaf6141327821d97b35bf2112e0d330bf605de15")]
 [assembly: System.Reflection.AssemblyProductAttribute("OneSitio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OneSitio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

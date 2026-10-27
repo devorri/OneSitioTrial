@@ -1,0 +1,159 @@
+@inherits LayoutComponentBase
+
+<div class="d-flex flex-column min-vh-100">
+    <!-- Top Notice Demonstration Bar -->
+    <div class="top-notice-bar">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-shield-check text-success"></i>
+                <span><strong>Official Civic Portal:</strong> Barangay Maligaya, Quezon City &bull; Powered by OneSitio</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="d-none d-md-inline"><i class="bi bi-clock me-1"></i> Hall Hours: Mon–Fri 8:00 AM – 5:00 PM</span>
+                <span class="d-none d-lg-inline"><i class="bi bi-telephone me-1"></i> Hotline: (02) 8924-0018</span>
+                <a href="#transparency" class="text-decoration-none">
+                    <span class="badge bg-dark text-success border border-success border-opacity-25 px-2 py-1">
+                        <i class="bi bi-link-45deg me-1"></i>SHA-256 Ledger Active
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Civic Navbar -->
+    <nav class="navbar navbar-expand-lg civic-navbar py-2">
+        <div class="container">
+            <a class="civic-brand" href="/">
+                <img src="images/barangay_maligaya_seal.jpg" alt="Barangay Maligaya Seal" class="brand-crest" />
+                <div>
+                    <div class="brand-title">OneSitio</div>
+                    <div class="brand-subtitle">Barangay Maligaya Portal</div>
+                </div>
+            </a>
+
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#civicNavContent" aria-controls="civicNavContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list fs-2 text-dark"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="civicNavContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-1">
+                    <li class="nav-item">
+                        <a class="nav-link-custom active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link-custom" href="/#services">Services & Documents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link-custom" href="/#tracker">Track Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link-custom" href="/#transparency">Blockchain Transparency</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link-custom" href="/#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link-custom" href="/#faq">FAQ</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <a href="/login" class="btn btn-civic-ghost px-3">
+                        <i class="bi bi-box-arrow-in-right me-1"></i> Log In
+                    </a>
+                    <a href="/register" class="btn btn-civic-primary">
+                        <i class="bi bi-person-plus me-1"></i> Register as Resident
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Body Content -->
+    <main class="flex-grow-1">
+        @Body
+    </main>
+
+    <!-- Civic Footer -->
+    <footer class="civic-footer">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <img src="images/barangay_maligaya_seal.jpg" alt="Barangay Maligaya Crest" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid #e2e8f0;" />
+                        <div>
+                            <h4 class="text-white mb-0 fw-bold">Barangay Maligaya</h4>
+                            <div class="text-success small fw-semibold">Lungsod ng Quezon, Kalakhang Maynila</div>
+                        </div>
+                    </div>
+                    <p class="text-secondary small pe-lg-3" style="color: #94a3b8 !important;">
+                        Official e-Governance and cryptographic transparency platform. Empowering citizens through real-time document issuance, automated digital payments, and tamper-evident blockchain fund accounting.
+                    </p>
+                    <div class="d-flex align-items-center gap-2 mt-3">
+                        <span class="badge bg-dark text-light border border-secondary px-2 py-1 small">
+                            <i class="bi bi-shield-check text-success me-1"></i> RA 10173 Compliant
+                        </span>
+                        <span class="badge bg-dark text-light border border-secondary px-2 py-1 small">
+                            <i class="bi bi-lock text-info me-1"></i> 256-Bit SSL
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 col-6">
+                    <h5>e-Services</h5>
+                    <ul class="footer-links">
+                        <li><a href="/#services"><i class="bi bi-chevron-right small me-1"></i> Barangay Clearance</a></li>
+                        <li><a href="/#services"><i class="bi bi-chevron-right small me-1"></i> Certificate of Indigency</a></li>
+                        <li><a href="/#services"><i class="bi bi-chevron-right small me-1"></i> Certificate of Residency</a></li>
+                        <li><a href="/#services"><i class="bi bi-chevron-right small me-1"></i> Business Clearance</a></li>
+                        <li><a href="/#tracker"><i class="bi bi-chevron-right small me-1"></i> Live Request Tracking</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-6">
+                    <h5>Transparency & Funds</h5>
+                    <ul class="footer-links">
+                        <li><a href="/#transparency"><i class="bi bi-link-45deg me-1"></i> SHA-256 Ledger Blocks</a></li>
+                        <li><a href="/#transparency"><i class="bi bi-pie-chart me-1"></i> General Fund Allocation</a></li>
+                        <li><a href="/#transparency"><i class="bi bi-cash-stack me-1"></i> 20% Development Fund</a></li>
+                        <li><a href="/#projects"><i class="bi bi-camera me-1"></i> Before / After Project Photos</a></li>
+                        <li><a href="/#faq"><i class="bi bi-question-circle me-1"></i> Citizen Help & Verification</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5>Barangay Hall Contact</h5>
+                    <div class="small text-secondary" style="color: #94a3b8 !important;">
+                        <p class="mb-2">
+                            <i class="bi bi-geo-alt-fill text-warning me-2"></i>
+                            Barangay Hall Complex, Sampaguita St. cor. Maligaya Ave., Quezon City
+                        </p>
+                        <p class="mb-2">
+                            <i class="bi bi-telephone-fill text-success me-2"></i>
+                            (02) 8924-0018 / 8924-0019
+                        </p>
+                        <p class="mb-2">
+                            <i class="bi bi-phone-fill text-info me-2"></i>
+                            +63 917 888 2749 (SMS Hotlines)
+                        </p>
+                        <p class="mb-0">
+                            <i class="bi bi-clock-fill text-light me-2"></i>
+                            Mon – Fri: 8:00 AM – 5:00 PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div>
+                    &copy; 2026 <strong>OneSitio &bull; Barangay Maligaya</strong>. All rights reserved. Republic of the Philippines.
+                </div>
+                <div class="d-flex gap-3">
+                    <a href="/#faq" class="text-secondary small">Terms of Service</a>
+                    <a href="/#faq" class="text-secondary small">Data Privacy Manual</a>
+                    <a href="/login" class="text-secondary small">Barangay Staff Access</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

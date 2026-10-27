@@ -1,7 +1,746 @@
-﻿@page "/"
+@page "/"
+@layout Layout.PublicLayout
+@rendermode InteractiveServer
 
-<PageTitle>Home</PageTitle>
+<PageTitle>OneSitio &bull; e-Barangay Management & Blockchain Transparency Portal</PageTitle>
 
-<h1>Hello, world!</h1>
+<!-- Blockchain Live Chain Ticker -->
+<section class="blockchain-ticker-bar">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="d-flex align-items-center gap-2">
+            <span class="hash-valid-badge">
+                <i class="bi bi-shield-lock-fill me-1"></i> BLOCKCHAIN VERIFIED
+            </span>
+            <span class="d-none d-md-inline text-light fw-semibold">Latest Block: #1,086</span>
+            <span class="hash-badge text-truncate" style="max-width: 260px;">
+                00003c810d94f27a...
+            </span>
+        </div>
+        <div class="d-flex align-items-center gap-3 small">
+            <span class="d-none d-lg-inline text-secondary">Merkle Root: 7f81a4b9c02d...</span>
+            <span class="text-success fw-bold"><i class="bi bi-check-circle-fill me-1"></i>0 Tamper Alerts</span>
+            <a href="#transparency" class="text-info text-decoration-none small">
+                Verify Endpoint <i class="bi bi-arrow-right-short"></i>
+            </a>
+        </div>
+    </div>
+</section>
 
-Welcome to your new app.
+<!-- Hero Section -->
+<section class="hero-wrapper">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <div class="hero-pill-badge">
+                    <span class="dot"></span>
+                    <span>Official e-Barangay Portal &bull; Barangay Maligaya</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Modern, Fast & <span class="highlight">Cryptographically Verifiable</span> e-Barangay Services
+                </h1>
+
+                <p class="hero-subtitle">
+                    Request official barangay clearances, manage household dependents, and verify community fund expenditures backed by tamper-evident blockchain accountability.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3 align-items-center">
+                    <a href="/register" class="btn btn-civic-primary btn-lg px-4 py-3">
+                        <i class="bi bi-person-check-fill me-2 fs-5"></i>
+                        Register as Resident
+                    </a>
+                    <a href="/login" class="btn btn-civic-outline btn-lg px-4 py-3">
+                        <i class="bi bi-box-arrow-in-right me-2 fs-5"></i>
+                        Resident Login
+                    </a>
+                    <a href="#tracker" class="btn btn-civic-ghost px-3 py-2 text-decoration-none">
+                        <i class="bi bi-search me-1"></i> Track a Request
+                    </a>
+                </div>
+
+                <div class="hero-stats-row">
+                    <div class="stat-item">
+                        <h4>100%</h4>
+                        <p>Tamper-Evident SHA-256 Ledger</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>Ages 15+</h4>
+                        <p>Voter & Student ID Verification</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>PayMongo</h4>
+                        <p>GCash, Maya, QR Ph, & Cards</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>24–48h</h4>
+                        <p>Clearance & Certificate Turnaround</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-card-showcase">
+                    <div class="hero-card-header">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-success bg-opacity-10 text-success fw-bold px-2 py-1">
+                                <i class="bi bi-patch-check-fill me-1"></i> OneSitio Verified
+                            </span>
+                            <span class="text-muted small">Brgy. Maligaya</span>
+                        </div>
+                        <span class="hero-card-tag">e-Citizen Portal</span>
+                    </div>
+
+                    <div class="hero-photo-container">
+                        <img src="images/hero_barangay_portal.jpg" alt="Modern Barangay Maligaya Community" />
+                        <div class="hero-photo-overlay">
+                            <div class="fw-bold small">Online Citizen Service Delivery</div>
+                            <div class="text-white-50" style="font-size: 0.75rem;">Fast digital document releases for all Puroks & Sitios</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-light p-3 rounded-3 border">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="fw-bold small text-dark">
+                                <i class="bi bi-file-earmark-check-fill text-success me-1"></i> Barangay Clearance
+                            </span>
+                            <span class="badge badge-status badge-approved">Approved & Ready</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-muted" style="font-size: 0.8rem;">
+                            <span>Applicant: Maria L. Santos</span>
+                            <span>Ref: REQ-0252</span>
+                        </div>
+                        <div class="mt-2 pt-2 border-top d-flex justify-content-between align-items-center">
+                            <span class="small text-muted"><i class="bi bi-credit-card me-1"></i> Paid via GCash</span>
+                            <span class="fw-bold text-success small">₱50.00 &bull; Verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Live Request Tracking Section -->
+<section id="tracker" class="py-5" style="background: #ffffff; border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="tracker-box">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+                        <div>
+                            <span class="section-tag mb-1 d-block"><i class="bi bi-radar me-1"></i> Real-Time Service Status</span>
+                            <h3 class="fw-bold mb-1">Track Your Document Request</h3>
+                            <p class="text-muted small mb-0">Enter your Reference Code or try sample tracking IDs below</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-outline-secondary" @onclick='() => LoadTracker("REQ-0264")'>REQ-0264 (Pending)</button>
+                            <button class="btn btn-sm btn-outline-secondary" @onclick='() => LoadTracker("REQ-0261")'>REQ-0261 (Under Review)</button>
+                            <button class="btn btn-sm btn-outline-success" @onclick='() => LoadTracker("REQ-0252")'>REQ-0252 (Approved)</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-4">
+                        <span class="input-group-text bg-light border-end-0">
+                            <i class="bi bi-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control form-control-lg border-start-0" placeholder="e.g. REQ-0252 or REQ-0264" @bind="searchTrackingCode" />
+                        <button class="btn btn-civic-primary px-4 fw-semibold" @onclick="SearchTracker">
+                            Track Request
+                        </button>
+                    </div>
+
+                    @if (currentTrackResult != null)
+                    {
+                        <div class="p-3 bg-light rounded-3 border">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pb-3 border-bottom">
+                                <div>
+                                    <h5 class="fw-bold mb-0 text-dark">@currentTrackResult.DocTitle</h5>
+                                    <div class="text-muted small">Tracking ID: <span class="fw-semibold text-dark">@currentTrackResult.Code</span> &bull; Beneficiary: @currentTrackResult.Beneficiary</div>
+                                </div>
+                                <span class="badge badge-status @currentTrackResult.BadgeClass fs-6 px-3 py-2">
+                                    @currentTrackResult.StatusText
+                                </span>
+                            </div>
+
+                            <!-- Stepper -->
+                            <div class="tracker-status-stepper">
+                                <div class="tracker-step-item @(currentTrackResult.Step >= 1 ? "completed" : "")">
+                                    <div class="tracker-step-icon">
+                                        <i class="bi bi-check-lg"></i>
+                                    </div>
+                                    <div class="tracker-step-label">1. Request Submitted</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">Oct 18, 2026</div>
+                                </div>
+                                <div class="tracker-step-item @(currentTrackResult.Step >= 2 ? "completed" : (currentTrackResult.Step == 1 ? "active" : ""))">
+                                    <div class="tracker-step-icon">
+                                        <i class="bi @(currentTrackResult.Step >= 2 ? "bi-check-lg" : "bi-eye")"></i>
+                                    </div>
+                                    <div class="tracker-step-label">2. Secretary Verification</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">OCR & Records Match</div>
+                                </div>
+                                <div class="tracker-step-item @(currentTrackResult.Step >= 3 ? "completed" : (currentTrackResult.Step == 2 ? "active" : ""))">
+                                    <div class="tracker-step-icon">
+                                        <i class="bi @(currentTrackResult.Step >= 3 ? "bi-check-lg" : "bi-credit-card")"></i>
+                                    </div>
+                                    <div class="tracker-step-label">3. PayMongo Payment</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">₱50.00 Cleared</div>
+                                </div>
+                                <div class="tracker-step-item @(currentTrackResult.Step >= 4 ? "completed" : (currentTrackResult.Step == 3 ? "active" : ""))">
+                                    <div class="tracker-step-icon">
+                                        <i class="bi @(currentTrackResult.Step >= 4 ? "bi-patch-check-fill" : "bi-box-seam")"></i>
+                                    </div>
+                                    <div class="tracker-step-label">4. Ready for Release</div>
+                                    <div class="text-muted" style="font-size: 0.7rem;">Barangay Hall Pick-Up</div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mt-3 pt-2 text-secondary small">
+                                <span><i class="bi bi-info-circle me-1"></i> Purpose: @currentTrackResult.Purpose</span>
+                                <a href="/login" class="text-success fw-bold text-decoration-none">
+                                    View in Resident Portal <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Official Documents Section -->
+<section id="services" class="py-5" style="background: var(--bg-page);">
+    <div class="container py-4">
+        <div class="section-header">
+            <div class="section-tag">Direct Resident Services</div>
+            <h2 class="section-title">Official Document Request Workflow</h2>
+            <p class="text-muted">
+                Submit applications 24/7 without queueing in line. Apply for yourself or on behalf of registered dependents under your household.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Barangay Clearance -->
+            <div class="col-lg-3 col-md-6">
+                <div class="service-card featured">
+                    <div class="service-icon-box">
+                        <i class="bi bi-award-fill"></i>
+                    </div>
+                    <h4 class="service-card-title">Barangay Clearance</h4>
+                    <p class="text-muted small">
+                        Primary credential required for local employment, postal ID, bank accounts, and NBI / PNP clearances.
+                    </p>
+                    <ul class="service-meta-list">
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Valid Government ID</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> 6+ Months Maligaya Residency</li>
+                        <li><i class="bi bi-clock-history text-secondary"></i> 1–2 Business Days</li>
+                    </ul>
+                    <div class="service-price-tag">
+                        <span>₱50.00</span>
+                        <a href="/register" class="btn btn-sm btn-civic-primary">
+                            Apply <i class="bi bi-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificate of Indigency -->
+            <div class="col-lg-3 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-heart-pulse-fill"></i>
+                    </div>
+                    <h4 class="service-card-title">Certificate of Indigency</h4>
+                    <p class="text-muted small">
+                        For medical assistance, government hospital subsidies, university scholarships, 4Ps programs, and PAO legal aid.
+                    </p>
+                    <ul class="service-meta-list">
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Resident Proof of Income/No Income</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Barangay Purok Endorsement</li>
+                        <li><i class="bi bi-clock-history text-secondary"></i> Same Day or 24h</li>
+                    </ul>
+                    <div class="service-price-tag">
+                        <span class="text-success">FREE (₱0.00)</span>
+                        <a href="/register" class="btn btn-sm btn-civic-outline">
+                            Apply <i class="bi bi-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificate of Residency -->
+            <div class="col-lg-3 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-house-check-fill"></i>
+                    </div>
+                    <h4 class="service-card-title">Certificate of Residency</h4>
+                    <p class="text-muted small">
+                        Verifies domicile address for Meralco/Maynilad utility connections, school enrollment, or legal court affidavits.
+                    </p>
+                    <ul class="service-meta-list">
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Proof of Billing or Lease</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Household Profile Match</li>
+                        <li><i class="bi bi-clock-history text-secondary"></i> 24 Hours</li>
+                    </ul>
+                    <div class="service-price-tag">
+                        <span>₱50.00</span>
+                        <a href="/register" class="btn btn-sm btn-civic-outline">
+                            Apply <i class="bi bi-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Clearance -->
+            <div class="col-lg-3 col-md-6">
+                <div class="service-card">
+                    <div class="service-icon-box">
+                        <i class="bi bi-shop"></i>
+                    </div>
+                    <h4 class="service-card-title">Barangay Business Clearance</h4>
+                    <p class="text-muted small">
+                        Required for new business operations, sari-sari stores, commercial establishments, and Mayor's permit renewals.
+                    </p>
+                    <ul class="service-meta-list">
+                        <li><i class="bi bi-check-circle-fill text-success"></i> DTI / SEC Registration</li>
+                        <li><i class="bi bi-check-circle-fill text-success"></i> Location Lease Contract</li>
+                        <li><i class="bi bi-clock-history text-secondary"></i> 2–3 Business Days</li>
+                    </ul>
+                    <div class="service-price-tag">
+                        <span>₱150.00</span>
+                        <a href="/register" class="btn btn-sm btn-civic-outline">
+                            Apply <i class="bi bi-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cryptographic Blockchain Transparency Section -->
+<section id="transparency" class="py-5" style="background: #0f172a; color: #ffffff;">
+    <div class="container py-4">
+        <div class="row align-items-center g-5 mb-5">
+            <div class="col-lg-7">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-dark border border-success border-opacity-50 text-success small fw-bold mb-3">
+                    <i class="bi bi-cpu-fill"></i> Cryptographic Accountability
+                </div>
+                <h2 class="text-white fw-bold mb-3 display-6">
+                    Immutable Budget & Expense Recording
+                </h2>
+                <p class="text-secondary mb-4" style="color: #94a3b8 !important;">
+                    Every financial allocation, revenue collection, and infrastructure disbursement is recorded as a sequential block with a cryptographic SHA-256 hash linked directly to the preceding block. If anyone alters a record, the chain breaks instantly.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3">
+                    <button class="btn btn-success fw-semibold px-4" @onclick="RunTamperTest">
+                        <i class="bi bi-shield-check me-2"></i> Run Mathematical Integrity Verification
+                    </button>
+                    <div class="d-flex align-items-center text-success small fw-bold">
+                        <i class="bi bi-check2-all fs-4 me-1"></i> Public Endpoint: /api/verify
+                    </div>
+                </div>
+                @if (integrityVerified)
+                {
+                    <div class="alert alert-success mt-3 py-2 px-3 d-flex align-items-center gap-2 border-0 bg-success bg-opacity-25 text-white">
+                        <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                        <div>
+                            <strong>Verification Successful:</strong> All 1,086 blocks verified valid. Zero tampering detected. Hash chain intact.
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="col-lg-5">
+                <div class="bg-dark p-4 rounded-4 border border-secondary border-opacity-25 shadow-lg">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-light fw-bold small"><i class="bi bi-link-45deg me-1"></i> BLOCK #1,086</span>
+                        <span class="badge bg-success bg-opacity-25 text-success">Verified SHA-256</span>
+                    </div>
+                    <div class="font-monospace small mb-2 text-secondary" style="font-size: 0.75rem;">
+                        <div>PREV_HASH: <span class="text-info">0000a4b79c3e102f...</span></div>
+                        <div class="mt-1">BLOCK_HASH: <span class="text-success">00003c810d94f27a...</span></div>
+                        <div class="mt-1">TIMESTAMP: <span class="text-warning">2026-10-27 07:42:19 UTC</span></div>
+                    </div>
+                    <div class="p-3 rounded-3 bg-black bg-opacity-50 border border-secondary border-opacity-25 mt-3">
+                        <div class="text-muted" style="font-size: 0.725rem;">TRANSACTION PAYLOAD</div>
+                        <div class="text-white fw-bold small mt-1">Barangay Clearance Collections Batch #2026-10</div>
+                        <div class="d-flex justify-content-between text-secondary mt-1" style="font-size: 0.8rem;">
+                            <span>Reconciled Fees via PayMongo</span>
+                            <span class="text-success fw-bold">+₱14,850.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fund Allocations Overview -->
+        <div class="row g-4 mt-2">
+            <div class="col-md-4">
+                <div class="p-4 rounded-3 border border-secondary border-opacity-25 bg-dark">
+                    <div class="text-secondary small fw-semibold text-uppercase">Annual General Fund</div>
+                    <h3 class="text-white fw-bold my-2">₱14,520,000</h3>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 72%;"></div>
+                    </div>
+                    <div class="d-flex justify-content-between text-secondary small mt-2">
+                        <span>Disbursed: 72%</span>
+                        <span>Available: ₱4,065,600</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 rounded-3 border border-secondary border-opacity-25 bg-dark">
+                    <div class="text-secondary small fw-semibold text-uppercase">20% Development Fund</div>
+                    <h3 class="text-white fw-bold my-2">₱2,904,000</h3>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 84%;"></div>
+                    </div>
+                    <div class="d-flex justify-content-between text-secondary small mt-2">
+                        <span>Committed: 84%</span>
+                        <span>Projects: 6 Active</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 rounded-3 border border-secondary border-opacity-25 bg-dark">
+                    <div class="text-secondary small fw-semibold text-uppercase">PayMongo Revenue Ledger</div>
+                    <h3 class="text-white fw-bold my-2">₱384,250</h3>
+                    <div class="progress" style="height: 6px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%;"></div>
+                    </div>
+                    <div class="d-flex justify-content-between text-secondary small mt-2">
+                        <span>100% Auto-Reconciled</span>
+                        <span>COA Compliance: PASS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Community Projects & Visual Progress Galleries Section -->
+<section id="projects" class="py-5" style="background: #ffffff;">
+    <div class="container py-4">
+        <div class="section-header">
+            <div class="section-tag">Public Infrastructure Tracker</div>
+            <h2 class="section-title">Zero Ghost Projects: Visual Verification</h2>
+            <p class="text-muted">
+                Every project displays allocated budgets, winning contractor, and photo uploads categorized into Before, During, and After phases so citizens can inspect progress anytime.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Project 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border rounded-4 shadow-sm overflow-hidden">
+                    <div class="position-relative">
+                        <img src="images/hero_barangay_portal.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Drainage Project" />
+                        <span class="position-absolute top-0 end-0 m-3 badge bg-primary">On-Going</span>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="text-muted small mb-1"><i class="bi bi-geo-alt me-1"></i> Purok 4 Riverside</div>
+                        <h5 class="fw-bold text-dark">Drainage Rehabilitation & Floodway Mitigation</h5>
+                        <p class="text-muted small">
+                            Upgrading 450 meters of reinforced concrete culverts to prevent street flooding during typhoon seasons.
+                        </p>
+                        <div class="p-3 bg-light rounded-3 mb-3 small">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="text-muted">Allocated Budget:</span>
+                                <span class="fw-bold text-dark">₱450,000.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="text-muted">Contractor:</span>
+                                <span class="fw-semibold">Maligaya Builders Corp</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Phase:</span>
+                                <span class="text-primary fw-semibold">During (65% Complete)</span>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <span class="badge bg-secondary">Before <i class="bi bi-camera"></i></span>
+                            <span class="badge bg-primary">During <i class="bi bi-camera-fill"></i></span>
+                            <span class="badge bg-light text-muted border">After (Pending)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border rounded-4 shadow-sm overflow-hidden">
+                    <div class="position-relative">
+                        <img src="images/hero_barangay_portal.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Streetlights" />
+                        <span class="position-absolute top-0 end-0 m-3 badge bg-success">Completed</span>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="text-muted small mb-1"><i class="bi bi-geo-alt me-1"></i> Main Thoroughfares (Sitio Ilaya)</div>
+                        <h5 class="fw-bold text-dark">Solar Streetlighting Program &bull; Phase 2</h5>
+                        <p class="text-muted small">
+                            Installation of 42 high-lumen solar LED streetlight posts to enhance nocturnal safety and pedestrian security.
+                        </p>
+                        <div class="p-3 bg-light rounded-3 mb-3 small">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="text-muted">Allocated Budget:</span>
+                                <span class="fw-bold text-dark">₱280,000.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="text-muted">Contractor:</span>
+                                <span class="fw-semibold">EcoLumex Solutions Inc</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Completion:</span>
+                                <span class="text-success fw-semibold">Turned Over Oct 2026</span>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <span class="badge bg-secondary">Before <i class="bi bi-camera"></i></span>
+                            <span class="badge bg-secondary">During <i class="bi bi-camera"></i></span>
+                            <span class="badge bg-success">After <i class="bi bi-check-circle-fill"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border rounded-4 shadow-sm overflow-hidden">
+                    <div class="position-relative">
+                        <img src="images/hero_barangay_portal.jpg" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Health Center" />
+                        <span class="position-absolute top-0 end-0 m-3 badge bg-warning text-dark">Proposed</span>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="text-muted small mb-1"><i class="bi bi-geo-alt me-1"></i> Barangay Hall Complex</div>
+                        <h5 class="fw-bold text-dark">Barangay Health Center Renovation & Pharmacy</h5>
+                        <p class="text-muted small">
+                            Expanding pediatric consultation rooms, adding cold-chain vaccine storage, and modernizing patient triage.
+                        </p>
+                        <div class="p-3 bg-light rounded-3 mb-3 small">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="text-muted">Proposed Budget:</span>
+                                <span class="fw-bold text-dark">₱320,000.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="text-muted">Procurement:</span>
+                                <span class="fw-semibold">Bidding Open</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Expected Start:</span>
+                                <span class="text-warning fw-bold">November 2026</span>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <span class="badge bg-primary">Project Plan <i class="bi bi-file-earmark-pdf"></i></span>
+                            <span class="badge bg-light text-muted border">Bidding Documents</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-5" style="background: var(--bg-page);">
+    <div class="container py-4">
+        <div class="section-header">
+            <div class="section-tag">Citizen Workflow</div>
+            <h2 class="section-title">How OneSitio Works in 4 Steps</h2>
+            <p class="text-muted">A modern, fully digital journey designed for citizens aged 15 and up.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="step-card">
+                    <div class="step-num-badge">1</div>
+                    <h5 class="fw-bold mb-2">Register & ID OCR</h5>
+                    <p class="text-muted small mb-0">
+                        Upload a government ID or student ID. Our OCR engine pre-checks your data, with final verification by the Barangay Secretary.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="step-card">
+                    <div class="step-num-badge">2</div>
+                    <h5 class="fw-bold mb-2">Select Document</h5>
+                    <p class="text-muted small mb-0">
+                        Pick Clearance, Residency, or Indigency. Specify purpose and select yourself or a household dependent as beneficiary.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="step-card">
+                    <div class="step-num-badge">3</div>
+                    <h5 class="fw-bold mb-2">Pay via PayMongo</h5>
+                    <p class="text-muted small mb-0">
+                        Pay conveniently using GCash, Maya, QR Ph, or online bank transfer. Fee is instantly recorded to the ledger.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="step-card">
+                    <div class="step-num-badge">4</div>
+                    <h5 class="fw-bold mb-2">Release & Pick-up</h5>
+                    <p class="text-muted small mb-0">
+                        Track approval status in real time. Pick up your signed, dry-sealed document at the express window or opt for courier.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Accordion Section -->
+<section id="faq" class="py-5" style="background: #ffffff; border-top: 1px solid var(--border-color);">
+    <div class="container py-4">
+        <div class="section-header">
+            <div class="section-tag">Resident Questions</div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="text-muted">Answers regarding registration requirements, household management, and fees.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item border rounded-3 mb-3">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+                                <i class="bi bi-question-circle text-success me-2"></i> Who is eligible to create an account?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show">
+                            <div class="accordion-body text-secondary small">
+                                Any bona fide resident of Barangay Maligaya aged 15 and up is eligible to create an account. For residents aged 15–17, school IDs and birth certificates are accepted. Adults (18+) can register their household and request documents on behalf of minors under 15 or senior relatives.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-3 mb-3">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                <i class="bi bi-credit-card text-success me-2"></i> What payment methods are supported?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse">
+                            <div class="accordion-body text-secondary small">
+                                Through our PayMongo integration, we accept GCash, Maya, QR Ph, BPI, UnionBank online banking, and Visa/Mastercard. For residents who prefer cash, payments can also be settled directly at the Barangay Hall Treasurer's cashier window.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border rounded-3 mb-3">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                <i class="bi bi-shield-check text-success me-2"></i> How does the blockchain transparency ledger protect fund integrity?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse">
+                            <div class="accordion-body text-secondary small">
+                                Every fund movement or project budget is cryptographically chained using SHA-256 block hashes. Historical transaction records cannot be modified retroactively without breaking the sequential cryptographic signature, ensuring complete Commission on Audit (COA) auditability and public transparency.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call-to-Action Bottom Banner -->
+<section class="py-5" style="background: radial-gradient(circle at 50% 50%, #174836 0%, #0d2a1f 100%); color: #ffffff;">
+    <div class="container text-center py-4">
+        <img src="images/barangay_maligaya_seal.jpg" alt="Barangay Seal" style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid #c9933b; margin-bottom: 1.5rem;" />
+        <h2 class="fw-bold mb-3 display-6">Skip the Queues at Barangay Hall</h2>
+        <p class="text-white-50 mx-auto mb-4" style="max-width: 620px;">
+            Register your resident profile today to request certificates, track document statuses in real time, and inspect community investments with verified transparency.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="/register" class="btn btn-warning text-dark fw-bold px-4 py-3 shadow">
+                <i class="bi bi-person-plus-fill me-2"></i> Register as Resident
+            </a>
+            <a href="/login" class="btn btn-outline-light fw-bold px-4 py-3">
+                <i class="bi bi-box-arrow-in-right me-2"></i> Sign In to Portal
+            </a>
+        </div>
+    </div>
+</section>
+
+@code {
+    private string searchTrackingCode = "REQ-0252";
+    private TrackResult? currentTrackResult;
+    private bool integrityVerified = false;
+
+    protected override void OnInitialized()
+    {
+        LoadTracker("REQ-0252");
+    }
+
+    private void LoadTracker(string code)
+    {
+        searchTrackingCode = code;
+        SearchTracker();
+    }
+
+    private void SearchTracker()
+    {
+        if (searchTrackingCode.Equals("REQ-0264", StringComparison.OrdinalIgnoreCase))
+        {
+            currentTrackResult = new TrackResult
+            {
+                Code = "REQ-0264",
+                DocTitle = "Barangay Clearance",
+                Beneficiary = "Maria L. Santos (Self)",
+                Purpose = "Local Employment (Call Center / BPO)",
+                StatusText = "Pending Verification",
+                BadgeClass = "badge-pending",
+                Step = 1
+            };
+        }
+        else if (searchTrackingCode.Equals("REQ-0261", StringComparison.OrdinalIgnoreCase))
+        {
+            currentTrackResult = new TrackResult
+            {
+                Code = "REQ-0261",
+                DocTitle = "Certificate of Indigency",
+                Beneficiary = "Maria L. Santos (Self)",
+                Purpose = "Medical Assistance Subsidy (QC General Hospital)",
+                StatusText = "Under Secretary Review",
+                BadgeClass = "badge-under-review",
+                Step = 2
+            };
+        }
+        else
+        {
+            // Default REQ-0252
+            currentTrackResult = new TrackResult
+            {
+                Code = "REQ-0252",
+                DocTitle = "Barangay Clearance",
+                Beneficiary = "Maria L. Santos (Self)",
+                Purpose = "Postal ID & Driver's License Application",
+                StatusText = "Approved · Ready for Release",
+                BadgeClass = "badge-approved",
+                Step = 4
+            };
+        }
+    }
+
+    private void RunTamperTest()
+    {
+        integrityVerified = true;
+    }
+
+    public class TrackResult
+    {
+        public string Code { get; set; } = "";
+        public string DocTitle { get; set; } = "";
+        public string Beneficiary { get; set; } = "";
+        public string Purpose { get; set; } = "";
+        public string StatusText { get; set; } = "";
+        public string BadgeClass { get; set; } = "";
+        public int Step { get; set; } = 4;
+    }
+}

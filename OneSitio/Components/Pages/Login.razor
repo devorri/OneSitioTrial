@@ -1,0 +1,192 @@
+@page "/login"
+@layout Layout.PublicLayout
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+
+<PageTitle>Login &bull; OneSitio e-Barangay Portal</PageTitle>
+
+<div class="auth-page-wrapper">
+    <div class="auth-card">
+        <div class="auth-header">
+            <img src="images/barangay_maligaya_seal.jpg" alt="Barangay Maligaya Crest" class="auth-header-seal" />
+            <h3 class="fw-bold text-dark mb-1">Welcome to OneSitio</h3>
+            <p class="text-muted small mb-0">Barangay Maligaya Civic Services & Transparency Portal</p>
+        </div>
+
+        <!-- Role Switcher Tabs -->
+        <div class="auth-tabs">
+            <button type="button" class="auth-tab-btn @(isStaffMode ? "" : "active")" @onclick="() => SwitchRole(false)">
+                <i class="bi bi-person-fill me-1"></i> Resident Portal
+            </button>
+            <button type="button" class="auth-tab-btn @(isStaffMode ? "active" : "")" @onclick="() => SwitchRole(true)">
+                <i class="bi bi-shield-lock-fill me-1"></i> Barangay Staff
+            </button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <div class="alert alert-danger py-2 px-3 small d-flex align-items-center gap-2 mb-3">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <div>@errorMessage</div>
+            </div>
+        }
+
+        @if (loginSuccess)
+        {
+            <div class="alert alert-success py-2 px-3 small d-flex align-items-center gap-2 mb-3">
+                <i class="bi bi-check-circle-fill"></i>
+                <div>Authentication successful! Redirecting to Resident Workspace...</div>
+            </div>
+        }
+
+        <form @onsubmit="HandleLogin">
+            <div class="mb-3">
+                <label class="form-label">
+                    @(isStaffMode ? "Official Staff Email / ID" : "Resident ID, Email, or Mobile No.")
+                </label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted border-end-0">
+                        <i class="bi @(isStaffMode ? "bi-building-fill-lock" : "bi-person-badge")"></i>
+                    </span>
+                    <input type="text" class="form-control border-start-0" placeholder="@(isStaffMode ? "secretary@maligaya.gov.ph" : "maria.santos@onesitio.ph or RES-2026-018")" @bind="username" required />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <label class="form-label mb-0">Password</label>
+                    <a href="javascript:void(0)" class="text-secondary small" @onclick="() => showForgotHelper = !showForgotHelper">
+                        Forgot Password?
+                    </a>
+                </div>
+                <div class="input-group mt-1">
+                    <span class="input-group-text bg-light text-muted border-end-0">
+                        <i class="bi bi-lock-fill"></i>
+                    </span>
+                    <input type="@(showPassword ? "text" : "password")" class="form-control border-start-0 border-end-0" placeholder="••••••••••••" @bind="password" required />
+                    <button type="button" class="input-group-text bg-light text-muted border-start-0" @onclick="() => showPassword = !showPassword">
+                        <i class="bi @(showPassword ? "bi-eye-slash" : "bi-eye")"></i>
+                    </button>
+                </div>
+            </div>
+
+            @if (showForgotHelper)
+            {
+                <div class="alert alert-info py-2 px-3 small mb-3">
+                    <i class="bi bi-info-circle me-1"></i>
+                    For security, password resets require OTP verification sent to your registered mobile number (+63 9XX) or assistance at the Barangay Secretary window.
+                </div>
+            }
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMe" @bind="rememberMe" />
+                    <label class="form-check-label text-muted small" for="rememberMe">
+                        Remember this workstation
+                    </label>
+                </div>
+                <span class="badge bg-light text-muted border small">SSL Encrypted</span>
+            </div>
+
+            <button type="submit" class="btn btn-civic-primary w-100 py-2 fs-6 fw-bold mb-3 shadow-sm" disabled="@isSubmitting">
+                @if (isSubmitting)
+                {
+                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    <span>Verifying Credentials...</span>
+                }
+                else
+                {
+                    <span>Log In to @(isStaffMode ? "Staff Portal" : "Resident Workspace") <i class="bi bi-arrow-right ms-1"></i></span>
+                }
+            </button>
+        </form>
+
+        <!-- Quick Demo Credentials Box -->
+        <div class="demo-credentials-box">
+            <div class="d-flex align-items-center justify-content-between">
+                <span class="text-muted fw-semibold" style="font-size: 0.775rem;">
+                    <i class="bi bi-lightning-charge-fill text-warning me-1"></i> QUICK DEMO LOGIN (ONE CLICK):
+                </span>
+                <span class="badge bg-secondary-subtle text-secondary" style="font-size: 0.7rem;">Evaluation Mode</span>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-2">
+                <button type="button" class="demo-chip-btn" @onclick="AutofillResident">
+                    <i class="bi bi-person-check text-success"></i> Resident: Maria L. Santos
+                </button>
+                <button type="button" class="demo-chip-btn" @onclick="AutofillStaff">
+                    <i class="bi bi-shield-check text-primary"></i> Staff: Sec. Elena Bautista
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center mt-4 pt-3 border-top">
+            <span class="text-muted small">New resident in Barangay Maligaya?</span>
+            <a href="/register" class="fw-bold text-success ms-1 small">
+                Register a new resident account &rarr;
+            </a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool isStaffMode = false;
+    private string username = "maria.santos@onesitio.ph";
+    private string password = "Password123!";
+    private bool showPassword = false;
+    private bool rememberMe = true;
+    private bool showForgotHelper = false;
+    private bool isSubmitting = false;
+    private bool loginSuccess = false;
+    private string errorMessage = "";
+
+    private void SwitchRole(bool staff)
+    {
+        isStaffMode = staff;
+        errorMessage = "";
+        if (isStaffMode)
+        {
+            username = "secretary@maligaya.gov.ph";
+            password = "StaffPassword2026!";
+        }
+        else
+        {
+            username = "maria.santos@onesitio.ph";
+            password = "Password123!";
+        }
+    }
+
+    private void AutofillResident()
+    {
+        isStaffMode = false;
+        username = "maria.santos@onesitio.ph";
+        password = "Password123!";
+        errorMessage = "";
+    }
+
+    private void AutofillStaff()
+    {
+        isStaffMode = true;
+        username = "secretary@maligaya.gov.ph";
+        password = "StaffPassword2026!";
+        errorMessage = "";
+    }
+
+    private async Task HandleLogin()
+    {
+        isSubmitting = true;
+        errorMessage = "";
+        await Task.Delay(600); // realistic feedback
+        isSubmitting = false;
+        loginSuccess = true;
+        await Task.Delay(400);
+
+        if (isStaffMode)
+        {
+            Navigation.NavigateTo("/resident?role=secretary");
+        }
+        else
+        {
+            Navigation.NavigateTo("/resident");
+        }
+    }
+}
